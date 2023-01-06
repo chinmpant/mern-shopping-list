@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Montserrat:wght@300;400;600;700&display=swap');
 
 * {
   margin: 0;
@@ -28,7 +28,9 @@ li {
   line-height: 2.2;
 }
 
-h1 {
+h1,
+h2,
+h3 {
   font-weight: 600;
   margin-bottom: 10px;
 }
