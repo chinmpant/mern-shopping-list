@@ -32,7 +32,9 @@ const Register = () => {
       navigate('/')
     }
 
-    dispatch(reset())
+    return () => {
+      dispatch(reset())
+    }
   }, [dispatch, isError, isSuccess, message, navigate, user])
 
   const handleChange = e => {

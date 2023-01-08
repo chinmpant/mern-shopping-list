@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Montserrat:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
 
 * {
   margin: 0;
@@ -7,8 +7,8 @@
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
-  height: 100%;
+  font-family: 'Montserrat', sans-serif;
+  height: 100vh;
 }
 
 a {
@@ -75,6 +75,13 @@ h3 {
   margin-right: 5px;
 }
 
+.footer {
+  text-align: center;
+  padding: 20px 0;
+  border-top: 1px solid #e6e6e6;
+  margin-top: 60px;
+}
+
 .heading {
   font-size: 2rem;
   font-weight: 700;
@@ -106,13 +113,23 @@ h3 {
   background-color: #f4f4f4;
   margin: 10px 0;
   padding: 20px 0 10px;
+  overflow: auto;
   position: relative;
 }
 
-.item .close {
+.item .delete {
   position: absolute;
   top: 10px;
   right: 15px;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.item .edit {
+  position: absolute;
+  top: 10px;
+  left: 15px;
   cursor: pointer;
   border: none;
   background: none;
@@ -214,5 +231,11 @@ h3 {
 
   .heading p {
     font-size: 1.5rem;
+  }
+
+  .items {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
   }
 }

@@ -20,18 +20,17 @@ const Dashboard = () => {
   useEffect(() => {
     if (isError) {
       if (
-        message.includes('Not authorized') ||
+        message.startsWith('Not authorized') ||
         message === "User doesn't exist"
       ) {
-        return () => {
-          toast.dismiss()
-          dispatch(reset())
-          dispatch(logout())
-          dispatch(authReset())
-          navigate('/login')
-        }
+        toast.error('Session has expired!')
+        dispatch(logout())
+        dispatch(authReset())
+        dispatch(reset())
+        navigate('/login')
+      } else {
+        toast.error(message)
       }
-      toast.error(message)
     }
 
     if (!user) {
