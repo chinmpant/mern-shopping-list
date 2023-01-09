@@ -31,16 +31,17 @@ const ItemForm = ({ currentId, setCurrentId, formRef }) => {
     <section className="form">
       <form onSubmit={handleSubmit} ref={formRef}>
         <div className="form-group">
-          <label htmlFor="name">Item Name</label>
           <input
             type="text"
             name="name"
             id="name"
-            placeholder="Enter item name"
+            placeholder=" "
             value={name}
             onChange={e => setName(e.target.value)}
+            autoComplete="off"
             required
           />
+          <label htmlFor="name">Item Name</label>
         </div>
         <div className="form-group">
           <button className="btn btn-block" type="submit">

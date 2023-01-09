@@ -61,7 +61,7 @@ const Register = () => {
   }
 
   return (
-    <>
+    <div className="page">
       <section className="heading">
         <h1>
           <FaUser /> Register
@@ -72,56 +72,60 @@ const Register = () => {
       <section className="form">
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="name">Name</label>
             <input
               type="text"
               className="form-control"
               id="name"
               name="name"
+              placeholder=" "
               value={name}
-              placeholder="Enter your name"
               onChange={handleChange}
+              autoComplete="off"
               required
             />
+            <label htmlFor="name">Name</label>
           </div>
           <div className="form-group">
-            <label htmlFor="email">Email</label>
             <input
               type="email"
               className="form-control"
               id="email"
               name="email"
+              placeholder=" "
               value={email}
-              placeholder="Enter your email"
               onChange={handleChange}
+              autoComplete="off"
               required
             />
+            <label htmlFor="email">Email</label>
           </div>
           <div className="form-group">
-            <label htmlFor="password">Password</label>
             <input
               type="password"
               className="form-control"
               id="password"
               name="password"
+              placeholder=" "
               value={password}
-              placeholder="Enter password"
               onChange={handleChange}
+              autoComplete="off"
               required
             />
+            <label htmlFor="password">Password</label>
           </div>
           <div className="form-group">
-            <label htmlFor="passwordConfirm">Confirm Password</label>
             <input
               type="password"
               className="form-control"
               id="passwordConfirm"
               name="passwordConfirm"
+              placeholder=" "
               value={passwordConfirm}
-              placeholder="Repeat password"
               onChange={handleChange}
+              autoComplete="off"
               required
             />
+            <label htmlFor="passwordConfirm">Confirm Password</label>
           </div>
           <div className="form-group">
             <button type="submit" className="btn btn-block">
@@ -130,7 +134,7 @@ const Register = () => {
           </div>
         </form>
       </section>
-    </>
+    </div>
   )
 }
 

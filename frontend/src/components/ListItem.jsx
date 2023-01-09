@@ -7,7 +7,7 @@ const ListItem = ({ item, setCurrentId, formRef }) => {
 
   return (
     <div className="item">
-      <div>{new Date(item.createdAt).toLocaleDateString('en-IN')}</div>
+      <span>{new Date(item.createdAt).toLocaleDateString('en-IN')}</span>
       <h2>{item.name}</h2>
       <button
         className="edit"

@@ -54,7 +54,7 @@ const Login = () => {
   }
 
   return (
-    <>
+    <div className="page">
       <section className="heading">
         <h1>
           <FaSignInAlt /> Login
@@ -65,30 +65,32 @@ const Login = () => {
       <section className="form">
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="email">Email</label>
             <input
               type="email"
               className="form-control"
               id="email"
               name="email"
+              placeholder=" "
               value={email}
-              placeholder="Enter your email"
               onChange={handleChange}
+              autoComplete="off"
               required
             />
+            <label htmlFor="email">Email</label>
           </div>
           <div className="form-group">
-            <label htmlFor="password">Password</label>
             <input
               type="password"
               className="form-control"
               id="password"
               name="password"
+              placeholder=" "
               value={password}
-              placeholder="Enter your password"
               onChange={handleChange}
+              autoComplete="off"
               required
             />
+            <label htmlFor="password">Password</label>
           </div>
           <div className="form-group">
             <button type="submit" className="btn btn-block">
@@ -97,7 +99,7 @@ const Login = () => {
           </div>
         </form>
       </section>
-    </>
+    </div>
   )
 }
 

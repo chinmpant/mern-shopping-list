@@ -52,7 +52,7 @@ const Dashboard = () => {
   }
 
   return (
-    <>
+    <div className="page">
       <section className="heading">
         <h1>Welcome {user && user.name}!</h1>
         <p>Your shopping list</p>
@@ -80,7 +80,7 @@ const Dashboard = () => {
           <h3>You have no items in your shopping list</h3>
         )}
       </section>
-    </>
+    </div>
   )
 }
 
