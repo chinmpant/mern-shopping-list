@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addItem, editItem } from '../features/list/listSlice'
 
-const ItemForm = ({ currentId, setCurrentId, formRef }) => {
+const ItemForm = ({ currentId, setCurrentId }) => {
   const [name, setName] = useState('')
   const item = useSelector(state =>
     state.list.items.find(item => item._id === currentId)
@@ -29,7 +29,7 @@ const ItemForm = ({ currentId, setCurrentId, formRef }) => {
 
   return (
     <section className="form">
-      <form onSubmit={handleSubmit} ref={formRef}>
+      <form onSubmit={handleSubmit}>
         <div className="form-group">
           <input
             type="text"

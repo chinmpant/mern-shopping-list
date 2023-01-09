@@ -48,37 +48,35 @@ const Dashboard = () => {
     return <Spinner />
   }
 
-  return (
-    <div className="page">
-      <section className="heading">
-        <h1>Welcome {user && user.name}!</h1>
-        <p>Your shopping list</p>
-      </section>
+  if (user) {
+    return (
+      <div className="page">
+        <section className="heading" ref={formRef}>
+          <h1>Welcome {user && user.name}!</h1>
+          <p>Your shopping list</p>
+        </section>
 
-      <ItemForm
-        currentId={currentId}
-        setCurrentId={setCurrentId}
-        formRef={formRef}
-      />
+        <ItemForm currentId={currentId} setCurrentId={setCurrentId} />
 
-      <section className="content">
-        {items.length > 0 ? (
-          <div className="items">
-            {items.map(item => (
-              <ListItem
-                key={item._id}
-                item={item}
-                setCurrentId={setCurrentId}
-                formRef={formRef}
-              />
-            ))}
-          </div>
-        ) : (
-          <h3>You have no items in your shopping list</h3>
-        )}
-      </section>
-    </div>
-  )
+        <section className="content">
+          {items.length > 0 ? (
+            <div className="items">
+              {items.map(item => (
+                <ListItem
+                  key={item._id}
+                  item={item}
+                  setCurrentId={setCurrentId}
+                  formRef={formRef}
+                />
+              ))}
+            </div>
+          ) : (
+            <h3>You have no items in your shopping list</h3>
+          )}
+        </section>
+      </div>
+    )
+  }
 }
 
 export default Dashboard
