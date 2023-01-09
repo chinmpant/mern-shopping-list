@@ -10,8 +10,22 @@ See [`.env.example`](.env.example) for setting up your environment variables.
 # Install deps
 $ npm install
 $ npm install --prefix frontend
+```
+
+### Development
+
+```bash
 # Run dev server
 $ npm run dev
+```
+
+### Production
+
+```bash
+# Build frontend
+$ npm run build
+# Run production preview server
+$ npm start
 ```
 
 ## License
