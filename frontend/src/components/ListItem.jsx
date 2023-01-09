@@ -10,6 +10,7 @@ const ListItem = ({ item, setCurrentId, formRef }) => {
       <span>{new Date(item.createdAt).toLocaleDateString('en-IN')}</span>
       <h2>{item.name}</h2>
       <button
+        aria-label="Edit Item"
         className="edit"
         onClick={() => {
           setCurrentId(item._id)
@@ -19,6 +20,7 @@ const ListItem = ({ item, setCurrentId, formRef }) => {
         <FaEllipsisH />
       </button>
       <button
+        aria-label="Delete Item"
         className="delete"
         onClick={() => {
           dispatch(deleteItem(item._id))
