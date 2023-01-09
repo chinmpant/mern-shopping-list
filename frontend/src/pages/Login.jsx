@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { FaSignInAlt } from 'react-icons/fa'
+import { FaSignInAlt, FaEye, FaEyeSlash } from 'react-icons/fa'
 import Spinner from '../components/Spinner'
 import { login, reset } from '../features/auth/authSlice'
 
@@ -11,6 +11,7 @@ const Login = () => {
     email: '',
     password: ''
   })
+  const [showPassword, setShowPassword] = useState(false)
 
   const { email, password } = formData
 
@@ -80,7 +81,7 @@ const Login = () => {
           </div>
           <div className="form-group">
             <input
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               className="form-control"
               id="password"
               name="password"
@@ -90,6 +91,14 @@ const Login = () => {
               autoComplete="off"
               required
             />
+            <span
+              aria-label="Toggle password visibility"
+              onClick={() => {
+                setShowPassword(prevShowPassword => !prevShowPassword)
+              }}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
             <label htmlFor="password">Password</label>
           </div>
           <div className="form-group">

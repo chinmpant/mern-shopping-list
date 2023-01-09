@@ -200,6 +200,14 @@ h3 {
   border: 2px solid #0f52ba;
 }
 
+.form-group input#password + span svg,
+.form-group input#passwordConfirm + span svg {
+  float: right;
+  position: absolute;
+  margin: 15px -36px;
+  cursor: pointer;
+}
+
 .form-group label {
   position: absolute;
   top: 12px;
@@ -285,6 +293,14 @@ h3 {
 }
 
 @media only screen and (max-width: 600px) {
+  .container {
+    padding: 0;
+  }
+
+  .content {
+    width: 95%;
+  }
+
   .form {
     width: 90%;
   }

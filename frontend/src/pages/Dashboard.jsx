@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { logout, reset as authReset } from '../features/auth/authSlice'
 import { getItems, reset } from '../features/list/listSlice'
+import jwtDecode from 'jwt-decode'
 import ItemForm from '../components/ItemForm'
 import Spinner from '../components/Spinner'
 import ListItem from '../components/ListItem'
@@ -21,24 +22,20 @@ const Dashboard = () => {
   )
 
   useEffect(() => {
-    if (isError) {
-      if (
-        message.startsWith('Not authorized') ||
-        message === "User doesn't exist"
-      ) {
-        toast.error('Session has expired!')
-        dispatch(logout())
-        dispatch(authReset())
-        dispatch(reset())
-        navigate('/login')
-      } else {
-        toast.error(message)
-      }
-    }
-
     if (!user) {
       navigate('/login')
     } else {
+      const decoded = jwtDecode(user.token)
+
+      if (decoded.exp * 1000 < new Date().getTime()) {
+        toast.error('Session has expired!')
+        dispatch(logout())
+        dispatch(authReset())
+        navigate('/login')
+      } else if (isError) {
+        toast.error(message)
+      }
+
       dispatch(getItems())
     }
 

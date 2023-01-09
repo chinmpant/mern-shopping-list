@@ -34,7 +34,7 @@ export const getItems = createAsyncThunk(
   'list/getItems',
   async (_, thunkAPI) => {
     try {
-      const token = thunkAPI.getState().auth.user?.token
+      const token = thunkAPI.getState().auth.user.token
       return await listService.getItems(token)
     } catch (error) {
       const message =

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { FaUser } from 'react-icons/fa'
+import { FaUser, FaEye, FaEyeSlash } from 'react-icons/fa'
 import Spinner from '../components/Spinner'
 import { register, reset } from '../features/auth/authSlice'
 
@@ -13,6 +13,8 @@ const Register = () => {
     password: '',
     passwordConfirm: ''
   })
+  const [showPassword, setShowPassword] = useState(false)
+  const [showPasswordConfirm, setShowPasswordConfirm] = useState(false)
 
   const { name, email, password, passwordConfirm } = formData
 
@@ -101,7 +103,7 @@ const Register = () => {
           </div>
           <div className="form-group">
             <input
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               className="form-control"
               id="password"
               name="password"
@@ -111,11 +113,19 @@ const Register = () => {
               autoComplete="off"
               required
             />
+            <span
+              aria-label="Toggle password visibility"
+              onClick={() => {
+                setShowPassword(prevShowPassword => !prevShowPassword)
+              }}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
             <label htmlFor="password">Password</label>
           </div>
           <div className="form-group">
             <input
-              type="password"
+              type={showPasswordConfirm ? 'text' : 'password'}
               className="form-control"
               id="passwordConfirm"
               name="passwordConfirm"
@@ -125,6 +135,16 @@ const Register = () => {
               autoComplete="off"
               required
             />
+            <span
+              aria-label="Toggle confirmation password visibility"
+              onClick={() => {
+                setShowPasswordConfirm(
+                  prevShowPasswordConfirm => !prevShowPasswordConfirm
+                )
+              }}
+            >
+              {showPasswordConfirm ? <FaEyeSlash /> : <FaEye />}
+            </span>
             <label htmlFor="passwordConfirm">Confirm Password</label>
           </div>
           <div className="form-group">
