@@ -1,22 +1,35 @@
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { addItem } from '../features/list/listSlice'
+import { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { addItem, editItem } from '../features/list/listSlice'
 
-const ItemForm = () => {
+const ItemForm = ({ currentId, setCurrentId, formRef }) => {
   const [name, setName] = useState('')
+  const item = useSelector(state =>
+    state.list.items.find(item => item._id === currentId)
+  )
 
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (item) setName(item.name)
+  }, [item])
 
   const handleSubmit = e => {
     e.preventDefault()
 
-    dispatch(addItem({ name }))
+    if (currentId) {
+      dispatch(editItem({ ...item, name }))
+    } else {
+      dispatch(addItem({ name }))
+    }
+
     setName('')
+    setCurrentId('')
   }
 
   return (
     <section className="form">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} ref={formRef}>
         <div className="form-group">
           <label htmlFor="name">Item Name</label>
           <input
@@ -31,7 +44,7 @@ const ItemForm = () => {
         </div>
         <div className="form-group">
           <button className="btn btn-block" type="submit">
-            Add Item
+            {currentId ? 'Edit' : 'Add'} Item
           </button>
         </div>
       </form>

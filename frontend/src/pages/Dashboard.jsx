@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
@@ -9,6 +9,9 @@ import Spinner from '../components/Spinner'
 import ListItem from '../components/ListItem'
 
 const Dashboard = () => {
+  const [currentId, setCurrentId] = useState(null)
+  const formRef = useRef(null)
+
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
@@ -55,13 +58,22 @@ const Dashboard = () => {
         <p>Your shopping list</p>
       </section>
 
-      <ItemForm />
+      <ItemForm
+        currentId={currentId}
+        setCurrentId={setCurrentId}
+        formRef={formRef}
+      />
 
       <section className="content">
         {items.length > 0 ? (
           <div className="items">
             {items.map(item => (
-              <ListItem key={item._id} item={item} />
+              <ListItem
+                key={item._id}
+                item={item}
+                setCurrentId={setCurrentId}
+                formRef={formRef}
+              />
             ))}
           </div>
         ) : (

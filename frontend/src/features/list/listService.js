@@ -41,10 +41,24 @@ const deleteItem = async (itemId, token) => {
   return res.data
 }
 
+// Edit item
+const editItem = async (itemId, itemData, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }
+
+  const res = await axios.put(API_URL + itemId, itemData, config)
+
+  return res.data
+}
+
 const listService = {
   addItem,
   getItems,
-  deleteItem
+  deleteItem,
+  editItem
 }
 
 export default listService
