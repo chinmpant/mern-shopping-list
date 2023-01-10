@@ -58,10 +58,6 @@ const Register = () => {
     }
   }
 
-  if (isLoading) {
-    return <Spinner />
-  }
-
   return (
     <div className="page">
       <section className="heading">
@@ -71,89 +67,95 @@ const Register = () => {
         <p>Please create an account</p>
       </section>
 
-      <section className="form">
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <input
-              type="text"
-              className="form-control"
-              id="name"
-              name="name"
-              placeholder=" "
-              value={name}
-              onChange={handleChange}
-              autoComplete="off"
-              required
-            />
-            <label htmlFor="name">Name</label>
-          </div>
-          <div className="form-group">
-            <input
-              type="email"
-              className="form-control"
-              id="email"
-              name="email"
-              placeholder=" "
-              value={email}
-              onChange={handleChange}
-              autoComplete="off"
-              required
-            />
-            <label htmlFor="email">Email</label>
-          </div>
-          <div className="form-group">
-            <input
-              type={showPassword ? 'text' : 'password'}
-              className="form-control"
-              id="password"
-              name="password"
-              placeholder=" "
-              value={password}
-              onChange={handleChange}
-              autoComplete="off"
-              required
-            />
-            <span
-              aria-label="Toggle password visibility"
-              onClick={() => {
-                setShowPassword(prevShowPassword => !prevShowPassword)
-              }}
-            >
-              {showPassword ? <FaEyeSlash /> : <FaEye />}
-            </span>
-            <label htmlFor="password">Password</label>
-          </div>
-          <div className="form-group">
-            <input
-              type={showPasswordConfirm ? 'text' : 'password'}
-              className="form-control"
-              id="passwordConfirm"
-              name="passwordConfirm"
-              placeholder=" "
-              value={passwordConfirm}
-              onChange={handleChange}
-              autoComplete="off"
-              required
-            />
-            <span
-              aria-label="Toggle confirmation password visibility"
-              onClick={() => {
-                setShowPasswordConfirm(
-                  prevShowPasswordConfirm => !prevShowPasswordConfirm
-                )
-              }}
-            >
-              {showPasswordConfirm ? <FaEyeSlash /> : <FaEye />}
-            </span>
-            <label htmlFor="passwordConfirm">Confirm Password</label>
-          </div>
-          <div className="form-group">
-            <button type="submit" className="btn btn-block">
-              Register
-            </button>
-          </div>
-        </form>
-      </section>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <section className="form">
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <input
+                type="text"
+                className="form-control"
+                id="name"
+                name="name"
+                placeholder=" "
+                value={name}
+                onChange={handleChange}
+                autoComplete="off"
+                required
+              />
+              <label htmlFor="name">Name</label>
+            </div>
+            <div className="form-group">
+              <input
+                type="email"
+                className="form-control"
+                id="email"
+                name="email"
+                placeholder=" "
+                value={email}
+                onChange={handleChange}
+                autoComplete="off"
+                required
+              />
+              <label htmlFor="email">Email</label>
+            </div>
+            <div className="form-group">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                className="form-control"
+                id="password"
+                name="password"
+                placeholder=" "
+                value={password}
+                onChange={handleChange}
+                autoComplete="off"
+                required
+              />
+              <span
+                aria-label="Toggle password visibility"
+                tabIndex={0}
+                onClick={() => {
+                  setShowPassword(prevShowPassword => !prevShowPassword)
+                }}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </span>
+              <label htmlFor="password">Password</label>
+            </div>
+            <div className="form-group">
+              <input
+                type={showPasswordConfirm ? 'text' : 'password'}
+                className="form-control"
+                id="passwordConfirm"
+                name="passwordConfirm"
+                placeholder=" "
+                value={passwordConfirm}
+                onChange={handleChange}
+                autoComplete="off"
+                required
+              />
+              <span
+                aria-label="Toggle confirmation password visibility"
+                tabIndex={0}
+                onClick={() => {
+                  setShowPasswordConfirm(
+                    prevShowPasswordConfirm => !prevShowPasswordConfirm
+                  )
+                }}
+              >
+                {showPasswordConfirm ? <FaEyeSlash /> : <FaEye />}
+              </span>
+              <label htmlFor="passwordConfirm">Confirm Password</label>
+            </div>
+            <div className="form-group">
+              <button type="submit" className="btn btn-block">
+                Register
+              </button>
+            </div>
+          </form>
+        </section>
+      )}
     </div>
   )
 }

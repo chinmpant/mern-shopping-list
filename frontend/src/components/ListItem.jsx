@@ -2,7 +2,7 @@ import { FaTrashAlt, FaEllipsisH } from 'react-icons/fa'
 import { useDispatch } from 'react-redux'
 import { deleteItem } from '../features/list/listSlice'
 
-const ListItem = ({ item, setCurrentId, formRef }) => {
+const ListItem = ({ item, currentId, setCurrentId, formRef }) => {
   const dispatch = useDispatch()
 
   return (
@@ -14,7 +14,7 @@ const ListItem = ({ item, setCurrentId, formRef }) => {
         className="edit"
         onClick={() => {
           setCurrentId(item._id)
-          formRef.current.scrollIntoView()
+          formRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
         }}
       >
         <FaEllipsisH />
@@ -24,6 +24,9 @@ const ListItem = ({ item, setCurrentId, formRef }) => {
         className="delete"
         onClick={() => {
           dispatch(deleteItem(item._id))
+          if (currentId === item._id) {
+            setCurrentId(null)
+          }
         }}
       >
         <FaTrashAlt />

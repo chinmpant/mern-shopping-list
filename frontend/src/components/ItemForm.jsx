@@ -11,8 +11,12 @@ const ItemForm = ({ currentId, setCurrentId }) => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (item) setName(item.name)
-  }, [item])
+    if (item) {
+      setName(item.name)
+    } else {
+      setName('')
+    }
+  }, [item, currentId])
 
   const handleSubmit = e => {
     e.preventDefault()

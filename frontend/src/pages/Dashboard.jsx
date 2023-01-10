@@ -25,55 +25,65 @@ const Dashboard = () => {
     if (!user) {
       navigate('/login')
     } else {
-      const decoded = jwtDecode(user.token)
+      dispatch(getItems())
+    }
 
-      if (decoded.exp * 1000 < new Date().getTime()) {
-        toast.error('Session has expired!')
-        dispatch(logout())
-        dispatch(authReset())
-        navigate('/login')
-      } else if (isError) {
-        toast.error(message)
+    if (isError) {
+      try {
+        const decoded = jwtDecode(user.token)
+
+        if (decoded.exp * 1000 < new Date().getTime()) {
+          toast.error('Session has expired!')
+        } else {
+          toast.error(message)
+        }
+      } catch (error) {
+        toast.error('Invalid token!')
       }
 
-      dispatch(getItems())
+      dispatch(logout())
+      dispatch(authReset())
+      navigate('/login')
     }
 
     return () => {
       dispatch(reset())
     }
-  }, [dispatch, isError, message, navigate, user])
-
-  if (isLoading) {
-    return <Spinner />
-  }
+  }, [user, isError, message, dispatch, navigate])
 
   if (user) {
     return (
       <div className="page">
         <section className="heading" ref={formRef}>
-          <h1>Welcome {user && user.name}!</h1>
+          <h1>Welcome {user.name}!</h1>
           <p>Your shopping list</p>
         </section>
 
         <ItemForm currentId={currentId} setCurrentId={setCurrentId} />
 
-        <section className="content">
-          {items.length > 0 ? (
-            <div className="items">
-              {items.map(item => (
-                <ListItem
-                  key={item._id}
-                  item={item}
-                  setCurrentId={setCurrentId}
-                  formRef={formRef}
-                />
-              ))}
-            </div>
-          ) : (
-            <h3>You have no items in your shopping list</h3>
-          )}
-        </section>
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <section className="content">
+            {items.length > 0 ? (
+              <div className="items">
+                {items
+                  .map(item => (
+                    <ListItem
+                      key={item._id}
+                      item={item}
+                      currentId={currentId}
+                      setCurrentId={setCurrentId}
+                      formRef={formRef}
+                    />
+                  ))
+                  .reverse()}
+              </div>
+            ) : (
+              <h3>You have no items in your shopping list</h3>
+            )}
+          </section>
+        )}
       </div>
     )
   }

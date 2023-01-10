@@ -50,10 +50,6 @@ const Login = () => {
     dispatch(login(userData))
   }
 
-  if (isLoading) {
-    return <Spinner />
-  }
-
   return (
     <div className="page">
       <section className="heading">
@@ -63,51 +59,56 @@ const Login = () => {
         <p>Please login to add items</p>
       </section>
 
-      <section className="form">
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <input
-              type="email"
-              className="form-control"
-              id="email"
-              name="email"
-              placeholder=" "
-              value={email}
-              onChange={handleChange}
-              autoComplete="off"
-              required
-            />
-            <label htmlFor="email">Email</label>
-          </div>
-          <div className="form-group">
-            <input
-              type={showPassword ? 'text' : 'password'}
-              className="form-control"
-              id="password"
-              name="password"
-              placeholder=" "
-              value={password}
-              onChange={handleChange}
-              autoComplete="off"
-              required
-            />
-            <span
-              aria-label="Toggle password visibility"
-              onClick={() => {
-                setShowPassword(prevShowPassword => !prevShowPassword)
-              }}
-            >
-              {showPassword ? <FaEyeSlash /> : <FaEye />}
-            </span>
-            <label htmlFor="password">Password</label>
-          </div>
-          <div className="form-group">
-            <button type="submit" className="btn btn-block">
-              Login
-            </button>
-          </div>
-        </form>
-      </section>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <section className="form">
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <input
+                type="email"
+                className="form-control"
+                id="email"
+                name="email"
+                placeholder=" "
+                value={email}
+                onChange={handleChange}
+                autoComplete="off"
+                required
+              />
+              <label htmlFor="email">Email</label>
+            </div>
+            <div className="form-group">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                className="form-control"
+                id="password"
+                name="password"
+                placeholder=" "
+                value={password}
+                onChange={handleChange}
+                autoComplete="off"
+                required
+              />
+              <span
+                aria-label="Toggle password visibility"
+                tabIndex={0}
+                onClick={() => {
+                  setShowPassword(prevShowPassword => !prevShowPassword)
+                }}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </span>
+              <label htmlFor="password">Password</label>
+            </div>
+            <div className="form-group">
+              <button type="submit" className="btn btn-block">
+                Login
+              </button>
+            </div>
+          </form>
+        </section>
+      )}
     </div>
   )
 }
