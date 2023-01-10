@@ -322,30 +322,46 @@ body {
   }
 }
 
-@media only screen and (max-width: 600px) {
-  .container {
-    padding: 0;
+@media only screen and (max-width: 640px) {
+  .form {
+    width: 80%;
   }
 
-  .content {
-    width: 95%;
+  .heading h1 {
+    font-size: 2.8rem;
+  }
+
+  .heading p {
+    font-size: 1.6rem;
+  }
+
+  .items {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
+
+@media only screen and (max-width: 460px) {
+  .container {
+    padding: 0;
   }
 
   .form {
     width: 90%;
   }
 
-  .heading h1 {
-    font-size: 2rem;
+  .content {
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 336px) {
+  .header {
+    flex-direction: column;
   }
 
-  .heading p {
-    font-size: 1.5rem;
-  }
-
-  .items {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 10px;
+  .header .logo a {
+    display: none;
   }
 }

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { logout, reset as authReset } from '../features/auth/authSlice'
 import { getItems, reset } from '../features/list/listSlice'
+import { motion } from 'framer-motion'
 import jwtDecode from 'jwt-decode'
 import ItemForm from '../components/ItemForm'
 import Spinner from '../components/Spinner'
@@ -33,12 +34,12 @@ const Dashboard = () => {
         const decoded = jwtDecode(user.token)
 
         if (decoded.exp * 1000 < new Date().getTime()) {
-          toast.error('Session has expired!')
+          toast.error('Session has expired!', { theme: 'colored' })
         } else {
-          toast.error(message)
+          toast.error(message, { theme: 'colored' })
         }
       } catch (error) {
-        toast.error('Invalid token!')
+        toast.error('Invalid token!', { theme: 'colored' })
       }
 
       dispatch(logout())
@@ -53,7 +54,13 @@ const Dashboard = () => {
 
   if (user) {
     return (
-      <div className="page">
+      <motion.div
+        className="page"
+        initial={{ opacity: 0.5, scale: 0.98 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0.5, scale: 0.98 }}
+        transition={{ duration: 0.1 }}
+      >
         <section className="heading" ref={formRef}>
           <h1>Welcome {user.name}!</h1>
           <p>Your shopping list</p>
@@ -84,7 +91,7 @@ const Dashboard = () => {
             )}
           </section>
         )}
-      </div>
+      </motion.div>
     )
   }
 }

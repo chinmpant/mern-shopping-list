@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { FaSignInAlt, FaEye, FaEyeSlash } from 'react-icons/fa'
+import { motion } from 'framer-motion'
 import Spinner from '../components/Spinner'
 import { login, reset } from '../features/auth/authSlice'
 
@@ -24,7 +25,7 @@ const Login = () => {
 
   useEffect(() => {
     if (isError) {
-      toast.error(message)
+      toast.error(message, { theme: 'colored' })
     }
 
     if (isSuccess || user) {
@@ -51,7 +52,13 @@ const Login = () => {
   }
 
   return (
-    <div className="page">
+    <motion.div
+      className="page"
+      initial={{ opacity: 0.5, scale: 0.98 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0.5, scale: 0.98 }}
+      transition={{ duration: 0.1 }}
+    >
       <section className="heading">
         <h1>
           <FaSignInAlt /> Login
@@ -109,7 +116,7 @@ const Login = () => {
           </form>
         </section>
       )}
-    </div>
+    </motion.div>
   )
 }
 

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { FaUser, FaEye, FaEyeSlash } from 'react-icons/fa'
+import { motion } from 'framer-motion'
 import Spinner from '../components/Spinner'
 import { register, reset } from '../features/auth/authSlice'
 
@@ -27,7 +28,7 @@ const Register = () => {
 
   useEffect(() => {
     if (isError) {
-      toast.error(message)
+      toast.error(message, { theme: 'colored' })
     }
 
     if (isSuccess || user) {
@@ -50,7 +51,7 @@ const Register = () => {
     e.preventDefault()
 
     if (password !== passwordConfirm) {
-      toast.error('Passwords do not match')
+      toast.error('Passwords do not match', { theme: 'colored' })
     } else {
       const userData = { name, email, password }
 
@@ -59,7 +60,13 @@ const Register = () => {
   }
 
   return (
-    <div className="page">
+    <motion.div
+      className="page"
+      initial={{ opacity: 0.5, scale: 0.98 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0.5, scale: 0.98 }}
+      transition={{ duration: 0.1 }}
+    >
       <section className="heading">
         <h1>
           <FaUser /> Register
@@ -156,7 +163,7 @@ const Register = () => {
           </form>
         </section>
       )}
-    </div>
+    </motion.div>
   )
 }
 
