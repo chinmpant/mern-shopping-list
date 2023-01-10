@@ -121,6 +121,7 @@ const Register = () => {
               />
               <span
                 aria-label="Toggle password visibility"
+                role="button"
                 tabIndex={0}
                 onClick={() => {
                   setShowPassword(prevShowPassword => !prevShowPassword)
@@ -144,6 +145,7 @@ const Register = () => {
               />
               <span
                 aria-label="Toggle confirmation password visibility"
+                role="button"
                 tabIndex={0}
                 onClick={() => {
                   setShowPasswordConfirm(

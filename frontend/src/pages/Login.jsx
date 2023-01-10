@@ -99,6 +99,7 @@ const Login = () => {
               />
               <span
                 aria-label="Toggle password visibility"
+                role="button"
                 tabIndex={0}
                 onClick={() => {
                   setShowPassword(prevShowPassword => !prevShowPassword)
