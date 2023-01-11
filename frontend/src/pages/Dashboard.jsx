@@ -1,11 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
-import { logout, reset as authReset } from '../features/auth/authSlice'
 import { getItems, reset } from '../features/list/listSlice'
 import { motion } from 'framer-motion'
-import jwtDecode from 'jwt-decode'
 import ItemForm from '../components/ItemForm'
 import Spinner from '../components/Spinner'
 import ListItem from '../components/ListItem'
@@ -29,30 +26,16 @@ const Dashboard = () => {
       dispatch(getItems())
     }
 
+    return () => dispatch(reset())
+  }, [user, navigate, dispatch])
+
+  useEffect(() => {
     if (isError) {
-      try {
-        const decoded = jwtDecode(user.token)
-
-        if (decoded.exp * 1000 < new Date().getTime()) {
-          toast.error('Session has expired!', { theme: 'colored' })
-        } else {
-          toast.error(message, { theme: 'colored' })
-        }
-      } catch (error) {
-        toast.error('Invalid token!', { theme: 'colored' })
-      }
-
-      dispatch(logout())
-      dispatch(authReset())
-      navigate('/login')
+      console.log(message)
     }
+  }, [isError, message])
 
-    return () => {
-      dispatch(reset())
-    }
-  }, [user, isError, message, dispatch, navigate])
-
-  if (user) {
+  if (user)
     return (
       <motion.div
         className="page"
@@ -93,7 +76,6 @@ const Dashboard = () => {
         )}
       </motion.div>
     )
-  }
 }
 
 export default Dashboard
