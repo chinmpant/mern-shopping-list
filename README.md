@@ -21,10 +21,12 @@ $ npm run dev
 
 ### Production
 
+Set `NODE_ENV` to `production` in your `.env` file to serve frontend build files. This will also remove stack traces from backend error messages.
+
 ```bash
 # Build frontend
 $ npm run build
-# Run production preview server
+# Run production server
 $ npm start
 ```
 
