@@ -11,6 +11,7 @@
     "axios": "^1.2.2",
     "framer-motion": "^8.3.4",
     "jwt-decode": "^3.1.2",
+    "mern-shopping-list": "file:..",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
